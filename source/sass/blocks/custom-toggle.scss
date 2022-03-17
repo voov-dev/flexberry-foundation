@@ -1,9 +1,8 @@
 .custom-toggle {
-  position: relative;
+  $block-name:                &; // #{$block-name}__element
 
+  position: relative;
   display: flex;
-  width: 500px;
-  padding: 20px 0;
 
   &__error {
     position: absolute;
@@ -29,9 +28,7 @@
 
   label {
     position: relative;
-
     padding-left: 26px;
-
     cursor: pointer;
 
     span {
@@ -41,16 +38,31 @@
   }
 
   &--checkbox {
-    .custom-toggle__icon {
+    padding: 0;
+    transition: background-color $trans-default;
+
+    @media (hover: hover), screen and (min-width: 0\0) {
+      &:hover,
+      &:focus-within {
+        background-color: $color-azure;
+      }
+    }
+
+    label {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+      padding: 10px 20px 10px 50px;
+    }
+
+    #{$block-name}__icon {
       position: absolute;
-      top: 2px;
-      left: 0;
-
-      width: 16px;
-      height: 16px;
-
-      border: 1px solid rgba($color-default-black, 0.2);
-
+      top: 9px;
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      border: 1px solid $color-heather;
+      border-radius: 2px;
       transition: border $trans-default;
 
       &::before {
@@ -58,21 +70,20 @@
         position: absolute;
         top: 50%;
         left: 50%;
-
-        width: 6px;
-        height: 6px;
-
-        background-color: $color-transparent;
-
         transform: translate(-50%, -50%);
-
-        transition: background-color $trans-default;
+        width: 12px;
+        height: 12px;
+        background-color: $color-transparent;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        transition: background $trans-default;
       }
     }
   }
 
   &--radio {
-    .custom-toggle__icon {
+    #{$block-name}__icon {
       position: absolute;
       top: 2px;
       left: 0;
@@ -105,10 +116,10 @@
   }
 
   input:checked + .custom-toggle__icon {
-    border: 1px solid rgba($color-default-black, 0.8);
+    border-color: $color-dodger-blue;
 
     &::before {
-      background-color: rgba($color-default-black, 0.8);
+      background-image: url("../img/svg/shape.svg");
     }
   }
 

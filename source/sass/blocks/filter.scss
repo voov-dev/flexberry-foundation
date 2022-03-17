@@ -1,0 +1,44 @@
+.filter {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+
+  &__form {
+    display: block;
+    padding: 20px 20px 10px;
+    background-color: $color-default-white;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__type {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__checkboxes-list {
+    display: block;
+    max-width: calc(100% + 20px * 2);
+    margin: 0 -20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__checkboxes-item {
+    margin: 0;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+}

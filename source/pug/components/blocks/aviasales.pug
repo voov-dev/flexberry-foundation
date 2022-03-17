@@ -1,0 +1,8 @@
+mixin aviasales-app()
+  section.aviasales-app
+    h1.visually-hidden!= "Главная"
+    .container
+      .aviasales-app__wrapper
+        +filter().aviasales-app__filter
+        +result().aviasales-app__result
+

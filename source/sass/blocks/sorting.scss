@@ -1,0 +1,76 @@
+.sorting {
+  &__form {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  &__order {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__order-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__order-tab {
+    flex-grow: 1;
+    max-width: 50%;
+    width: 100%;
+
+    &:first-child > label {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    &:last-child > label {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+
+  label {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: $color-default-white;
+    border: 1px solid $color-solitude;
+    cursor: pointer;
+    transition: background-color $trans-default, border-color $trans-default, color $trans-default;
+  }
+
+  input:checked ~ label {
+    color: $color-default-white;
+    background-color: $color-dodger-blue;
+    border-color: $color-dodger-blue;
+
+    @media (hover: hover), screen and (min-width: 0\0) {
+      &:hover,
+      &:focus {
+        background-color: $color-dodger-blue;
+      }
+    }
+  }
+
+  input:not(:checked) {
+    @media (hover: hover), screen and (min-width: 0\0) {
+      &:hover ~ label,
+      &:focus ~ label {
+        background-color: $color-azure;
+      }
+    }
+  }
+}

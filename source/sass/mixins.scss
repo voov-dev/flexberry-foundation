@@ -50,11 +50,11 @@
 //   }
 // }
 
-// @mixin vp-768 {
-//   @media (min-width: $vp-768) {
-//     @content;
-//   }
-// }
+@mixin vp-768 {
+  @media (min-width: $vp-768) {
+    @content;
+  }
+}
 
 // @mixin vp-1024 {
 //   @media (min-width: $vp-1024) {

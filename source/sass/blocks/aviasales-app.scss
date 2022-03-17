@@ -1,0 +1,31 @@
+.aviasales-app {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 10px;
+  }
+
+  &__filter {
+    flex-grow: 1;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px 20px;
+
+    @include vp-768 {
+      max-width: 250px;
+    }
+  }
+
+  &__result {
+    flex-grow: 1;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    @include vp-768 {
+      max-width: calc(100% - 250px);
+    }
+  }
+}
