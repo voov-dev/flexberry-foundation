@@ -5,9 +5,9 @@ mixin sorting()
         legend.visually-hidden!= "Показать сначала:"
         ul.sorting__order-list
           li.sorting__order-tab
-            input(id="sort-cheap", type="radio", name="sorting-order", value="sort-cheap", checked).visually-hidden
+            input(id="sort-cheap", type="radio", name="sorting-order", value="cheap", checked).visually-hidden
             label(for="sort-cheap")!= "Самый дешевый"
           li.sorting__order-tab
-            input(id="sort-fast", type="radio", name="sorting-order", value="sort-fast").visually-hidden
+            input(id="sort-fast", type="radio", name="sorting-order", value="fast").visually-hidden
             label(for="sort-fast")!= "Самый быстрый"
 

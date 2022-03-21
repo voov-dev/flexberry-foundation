@@ -2,7 +2,10 @@ import {iosVhFix} from './utils/ios-vh-fix';
 import {initModals} from './modules/modals/init-modals';
 import {initCustomSelect} from './modules/form/init-custom-select';
 import {initFormValidate} from './modules/form/init-form-validate';
+import {Api} from './api';
+import {AppPresenter} from './presenter/app-presenter';
 
+const END_POINT = 'https://front-test.beta.aviasales.ru';
 // ---------------------------------
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -11,9 +14,14 @@ window.addEventListener('DOMContentLoaded', () => {
   // ---------------------------------
 
   iosVhFix();
+  // console.log('>> api: ', api.getSearchId('search'));
+  // console.log('>> searchId: ', searchId);
+  // api.getSearchId('search');
 
   // Modules
   // ---------------------------------
+  const api = new Api(END_POINT);
+
 
   // все скрипты должны быть в обработчике 'DOMContentLoaded', но не все в 'load'
   // в load следует добавить скрипты, не участвующие в работе первого экрана
@@ -21,6 +29,9 @@ window.addEventListener('DOMContentLoaded', () => {
     initModals();
     initCustomSelect();
     initFormValidate();
+    const appContainer = document.querySelector('.main');
+    const appPresenter = new AppPresenter(appContainer, api);
+    appPresenter.init();
   });
 });
 
