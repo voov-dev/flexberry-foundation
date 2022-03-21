@@ -3,11 +3,10 @@ import {inclineWord} from '../utils/incline-word';
 import {getDate, getDuration} from '../utils/get-date';
 
 const createTicketTemplate = (ticket) => {
+  const price = ticket.price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1&thinsp;');
   let tables = '';
 
   ticket.segments.forEach((segment) => {
-    let currentTime = new Date(segment.date);
-
     tables += `<table class="product__table">
                 <tr>
                   <th class="product__table-col product__table-title">${segment.origin} – ${segment.destination}</th>
@@ -21,9 +20,10 @@ const createTicketTemplate = (ticket) => {
                 </tr>
               </table>`;
   });
+
   return `<li class="results__item product">
       <div class="product__header">
-        <div class="product__price"><span class="product__price-value">${ticket.price} </span><span class="product__currency rouble">₽</span></div>
+        <div class="product__price"><span class="product__price-value">${price} </span><span class="product__currency rouble">₽</span></div>
         <div class="product__image">
           <picture>
             <source type="image/webp" srcset="http://pics.avs.io/99/36/${ticket.carrier}.webp, http://pics.avs.io/99/36/${ticket.carrier}@2x.webp 2x">

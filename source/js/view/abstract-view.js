@@ -21,4 +21,28 @@ export class AbstractView {
 
     return this.element;
   }
+
+  removeElement() {
+    this.element = null;
+  }
+
+  setBeforeRenderHandler(callback) {
+    this.callbacks.beforeRender = callback;
+  }
+
+  setAfterRenderHandler(callback) {
+    this.callbacks.afterRender = callback;
+  }
+
+  handleBeforeRenderCallback() {
+    if (typeof this.callbacks.beforeRender === 'function') {
+      this.callbacks.beforeRender();
+    }
+  }
+
+  handleAfterRenderCallback() {
+    if (typeof this.callbacks.afterRender === 'function') {
+      this.callbacks.afterRender();
+    }
+  }
 }

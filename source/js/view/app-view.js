@@ -1,6 +1,10 @@
 import {AbstractView} from './abstract-view';
 
 export class AppView extends AbstractView {
+  constructor() {
+    super();
+  }
+
   getAppContainer() {
     return this.getElement().querySelector('.aviasales-app__wrapper');
   }

@@ -6,7 +6,7 @@ export class TicketLayoutView extends AbstractView {
   }
 
   getSortingContainer() {
-    return this.getElement().querySelector('.results__sorting');
+    return this.getElement().querySelector('.sorting__form');
   }
 
   getTicketListContainer() {
@@ -16,7 +16,9 @@ export class TicketLayoutView extends AbstractView {
   getTemplate() {
     return `<section class="results aviasales-app__result">
               <h2 class="visually-hidden">Результаты</h2>
-              <div class="results__sorting"></div>
+              <div class="results__sorting sorting">
+                  <form class="sorting__form"></form>
+              </div>
               <ol class="results__list"></ol>
             </section>`;
   }

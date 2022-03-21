@@ -1,4 +1,4 @@
-import {render, RenderPosition} from '../utils/render';
+import {render, remove, RenderPosition} from '../utils/render';
 import {TicketItemView} from '../view/ticket-item-view';
 
 export class TicketItemPresenter {
@@ -13,5 +13,9 @@ export class TicketItemPresenter {
     this.ticketItemComponent = new TicketItemView(ticket);
 
     render(this.ticketsListContainer, this.ticketItemComponent, RenderPosition.BEFOREEND);
+  }
+
+  destroy() {
+    remove(this.ticketItemComponent);
   }
 }

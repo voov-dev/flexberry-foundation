@@ -29,8 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initModals();
     initCustomSelect();
     initFormValidate();
-    const appContainer = document.querySelector('.main');
-    const appPresenter = new AppPresenter(appContainer, api);
+    const appPresenter = new AppPresenter(document.querySelector('.main'), api);
     appPresenter.init();
   });
 });

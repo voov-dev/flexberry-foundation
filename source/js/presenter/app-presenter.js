@@ -9,6 +9,7 @@ export class AppPresenter {
   constructor(mainContainer, api) {
     this.mainContainer = mainContainer;
     this.api = api;
+
     this.ticketsModel = new TicketModel();
     this.appComponent = null;
   }

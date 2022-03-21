@@ -2,7 +2,7 @@ import {SortingOrder} from '../const';
 
 const sortByPrice = (ticket1, ticket2) => ticket1.price - ticket2.price;
 
-const sortByFast = (ticket1, ticket2) => ticket1.segments[0].duration - ticket2.segments[0].duration;
+const sortByFast = (ticket1, ticket2) => (ticket1.segments[0].duration + ticket1.segments[1].duration) - (ticket2.segments[0].duration + ticket2.segments[1].duration);
 
 export const sortTickets = (tickets, sortingOrder) => {
   switch (sortingOrder) {

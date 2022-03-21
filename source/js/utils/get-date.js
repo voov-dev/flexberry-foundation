@@ -4,6 +4,12 @@ export const getDate = (date, duration) => {
   return `${new Date(date).toLocaleTimeString().slice(0, -3)} - ${new Date(timeMilliseconds + duration * 60 * 1000).toLocaleTimeString().slice(0, -3)}`;
 };
 
+export const getDateMilliseconds = (date) => {
+  return new Date(date).getTime();
+};
+
+
+
 export const getDuration = (duration) => {
   return `${Math.trunc(duration / 60)}ч ${duration % 60}м`;
 }
