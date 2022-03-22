@@ -27,5 +27,6 @@ export class AppPresenter {
 
     await this.api.init();
     this.ticketsModel.setTickets(UpdateType.INIT, await this.api.getTickets());
+    document.querySelector('.aviasales-app').classList.add('is-loaded')
   }
 }

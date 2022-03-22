@@ -13,20 +13,7 @@ const getElement = (object) => {
   return object;
 };
 
-// const handleBeforeRenderCallback = ({obj}) => {
-//   if (obj instanceof AbstractView) {
-//     obj.handleBeforeRenderCallback();
-//   }
-// }
-//
-// const handleAfterRenderCallback = ({obj}) => {
-//   if (obj instanceof AbstractView) {
-//     obj.handleAfterRenderCallback();
-//   }
-// }
-
 export const render = (container, child, plase = RenderPosition.BEFOREEND) => {
-  // handleBeforeRenderCallback(child);
   switch (plase) {
     case RenderPosition.AFTERBEGIN: {
       getElement(container).prepend(getElement(child));
@@ -36,7 +23,6 @@ export const render = (container, child, plase = RenderPosition.BEFOREEND) => {
     default:
       getElement(container).append(getElement(child));
   }
-  // handleAfterRenderCallback(child);
 };
 
 export const createElement = (template) => {
@@ -66,7 +52,5 @@ export const replace = (newChild, oldChild) => {
     throw new Error('Can\'t replace non-existent elements');
   }
 
-  // handleBeforeRenderCallback(newChild);
   parentElement.replaceChild(getElement(newChild), getElement(oldChild));
-  // handleAfterRenderCallback(newChild);
 };

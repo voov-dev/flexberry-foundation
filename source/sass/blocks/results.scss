@@ -3,6 +3,15 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    &:empty:before {
+      display: block;
+      padding: 20px;
+      text-align: center;
+      content: "Здесь пока ничего нет";
+      background-color: $color-default-white;
+      border-radius: 5px;
+    }
   }
 
   &__item {
