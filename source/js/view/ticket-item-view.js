@@ -26,8 +26,8 @@ const createTicketTemplate = (ticket) => {
         <div class="product__price">${price}</div>
         <div class="product__image">
           <picture>
-            <source type="image/webp" srcset="http://pics.avs.io/99/36/${ticket.carrier}.webp, http://pics.avs.io/99/36/${ticket.carrier}@2x.webp 2x">
-            <img src="http://pics.avs.io/99/36/${ticket.carrier}.png" srcset="http://pics.avs.io/99/36/${ticket.carrier}2x.png 2x" width="110" height="36" alt="S7">
+            <source type="image/webp" srcset="https://pics.avs.io/99/36/${ticket.carrier}.webp, https://pics.avs.io/99/36/${ticket.carrier}@2x.webp 2x">
+            <img src="https://pics.avs.io/99/36/${ticket.carrier}.png" srcset="https://pics.avs.io/99/36/${ticket.carrier}2x.png 2x" width="110" height="36" alt="S7">
           </picture>
         </div>
       </div>
