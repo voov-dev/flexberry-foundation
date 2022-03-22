@@ -1,21 +1,27 @@
 import {sortTickets} from '../utils/sort-tickets';
-import {SortingOrder, UpdateType} from '../const';
+import {filterTickets} from '../utils/filter-tickets';
+import {SortingOrder, FilterStops, UpdateType} from '../const';
 import {render, remove, replace, RenderPosition} from '../utils/render';
 import {TicketLayoutView} from '../view/ticket-layout-view';
 import {SortingOrderView} from '../view/sorting-order-view';
+import {FilterStopsView} from '../view/filter-stops-view';
 import {TicketItemPresenter} from './ticket-item-presenter';
 import {getDateMilliseconds} from '../utils/get-date';
 
 export class TicketListPresenter {
-  constructor({appContainer, ticketsModel}) {
+  constructor({appContainer, ticketsModel, filterContainer}) {
     this.appContainer = appContainer;
+    this.filterContainer = filterContainer;
     this.ticketsModel = ticketsModel;
     this.ticketPresenters = {};
     this.selectedSortingOrder = SortingOrder.CHEAP;
+    this.selectedFilterStops = [FilterStops.ALL, FilterStops.NON_STOP, FilterStops.STOP_ONE, FilterStops.STOP_TWO, FilterStops.STOP_THREE];
     this.sortingOrderComponent = null;
+    this.filterStopsComponent = null;
 
     this.handleModelEvent = this.handleModelEvent.bind(this);
     this.handleSortingOrderChange = this.handleSortingOrderChange.bind(this);
+    this.handleFilterStopsChange = this.handleFilterStopsChange.bind(this);
   }
 
   init() {
@@ -23,6 +29,7 @@ export class TicketListPresenter {
     render(this.appContainer, this.ticketLayoutComponent);
 
     this.renderSortingOrder();
+    this.renderFilterStops();
 
     this.ticketsModel.addSubscriber(this.handleModelEvent);
   }
@@ -44,8 +51,46 @@ export class TicketListPresenter {
     remove(previous);
   }
 
+  renderFilterStops() {
+    const disabled = false;
+    const previous = this.filterStopsComponent;
+
+    this.filterStopsComponent = new FilterStopsView(disabled, this.selectedFilterStops);
+    this.filterStopsComponent.setFilterStopChangeHandler(this.handleFilterStopsChange);
+
+    if (previous === null) {
+      render(this.filterContainer, this.filterStopsComponent, RenderPosition.BEFOREEND);
+
+      return;
+    }
+
+    replace(this.filterStopsComponent, previous);
+    remove(previous);
+  }
+
   handleSortingOrderChange(sortingOrder) {
     this.selectedSortingOrder = sortingOrder;
+    this.renderListTickets();
+  }
+
+  handleFilterStopsChange(value, checked) {
+    if (checked) {
+      this.selectedFilterStops.push(value);
+
+      if (this.selectedFilterStops.includes(FilterStops.ALL)) {
+        this.selectedFilterStops = [FilterStops.ALL, FilterStops.NON_STOP, FilterStops.STOP_ONE, FilterStops.STOP_TWO, FilterStops.STOP_THREE];
+        this.renderFilterStops();
+      }
+    } else {
+      this.selectedFilterStops = this.selectedFilterStops.filter((key) => key !== value);
+
+      if (this.selectedFilterStops.includes(FilterStops.ALL)) {
+        this.selectedFilterStops = this.selectedFilterStops.filter((key) => key !== FilterStops.ALL);
+      }
+
+      this.renderFilterStops();
+    }
+
     this.renderListTickets();
   }
 
@@ -62,7 +107,13 @@ export class TicketListPresenter {
   }
 
   getTickets() {
-    const tickets = this.ticketsModel.getTickets();
+    let tickets = this.ticketsModel.getTickets();
+
+    if (!this.selectedFilterStops) {
+      this.selectedFilterStops = FilterStops.ALL;
+    }
+
+    tickets = filterTickets(tickets, this.selectedFilterStops);
 
     return sortTickets(tickets, this.selectedSortingOrder);
   }

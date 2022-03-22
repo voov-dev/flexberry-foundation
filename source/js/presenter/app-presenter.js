@@ -21,6 +21,7 @@ export class AppPresenter {
     this.ticketListPresenter = new TicketListPresenter({
       appContainer: this.appComponent.getAppContainer(),
       ticketsModel: this.ticketsModel,
+      filterContainer: this.appComponent.getFilterContainer(),
     });
     this.ticketListPresenter.init();
 
